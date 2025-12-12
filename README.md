@@ -8,6 +8,7 @@ The entire project is built inside **one single file** (`index.html`). You do no
 
 **No servers. No databases**
 
+link: https://gpamastercalc.netlify.app/
 ---
 
 ## Why is this BETTER than other calculators?

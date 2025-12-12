@@ -1,0 +1,570 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>GPA Calculator</title>
+    <style>
+        :root {
+            --primary-color: #2c3e50;
+            --accent-color: #27ae60; 
+            --calc-color: #2980b9;    
+            --danger-color: #e74c3c;
+            --bg-color: #f4f6f9;
+            --card-bg: #ffffff;
+            --text-color: #333;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background-color: var(--bg-color);
+            color: var(--text-color);
+            margin: 0;
+            padding: 20px;
+            line-height: 1.5;
+        }
+
+        h1, h2 { color: var(--primary-color); margin-top: 0; }
+        
+        .container {
+            max-width: 1100px;
+            margin: 0 auto;
+            display: flex;
+            flex-direction: column;
+            gap: 20px;
+        }
+
+        /* --- CARD STYLES --- */
+        .card {
+            background: var(--card-bg);
+            border-radius: 8px;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.05);
+            padding: 20px;
+            border-top: 5px solid #ccc;
+        }
+        .card.settings { border-top-color: var(--accent-color); }
+        .card.calculator { border-top-color: var(--calc-color); }
+
+        /* --- SETTINGS SECTION --- */
+        .settings-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 15px;
+            flex-wrap: wrap;
+            gap: 10px;
+        }
+
+        .threshold-box {
+            background: #e8f8f5;
+            padding: 8px 12px;
+            border-radius: 6px;
+            border: 1px solid #d1f2eb;
+            font-size: 0.9rem;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .config-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr 1fr 1fr 40px;
+            gap: 8px;
+            font-weight: bold;
+            border-bottom: 2px solid #eee;
+            padding-bottom: 8px;
+            margin-bottom: 8px;
+            font-size: 0.9rem;
+        }
+
+        .config-row {
+            display: grid;
+            grid-template-columns: 1fr 1fr 1fr 1fr 40px;
+            gap: 8px;
+            margin-bottom: 6px;
+        }
+
+        /* --- CALCULATOR SECTIONS --- */
+        .calc-wrapper {
+            display: flex;
+            gap: 20px;
+            flex-wrap: wrap;
+        }
+        
+        .calc-section {
+            flex: 1;
+            min-width: 350px; /* Ensures it doesn't get too squished */
+        }
+
+        /* THE SINGLE LINE INPUT ROW */
+        .input-row {
+            display: flex;
+            flex-direction: row;
+            flex-wrap: nowrap; /* Forces single line */
+            gap: 10px;
+            margin-bottom: 8px;
+            align-items: center;
+            padding: 5px;
+            background: #fdfdfd;
+            border: 1px solid #eee;
+            border-radius: 4px;
+        }
+
+        .input-row label { 
+            width: 85px; /* Fixed width for labels to align nicely */
+            font-weight: 600; 
+            font-size: 0.85rem;
+            flex-shrink: 0; /* Prevents label from shrinking */
+        }
+
+        /* Inputs within calculator rows */
+        .input-row input {
+            flex: 1; /* Inputs take available space equally */
+            min-width: 60px; /* Prevents becoming unclickable */
+        }
+
+        /* --- FORM ELEMENTS --- */
+        input {
+            width: 100%;
+            padding: 8px;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+            box-sizing: border-box; 
+            font-size: 0.95rem;
+        }
+        input:focus { outline: 2px solid var(--calc-color); border-color: transparent; }
+
+        /* --- BUTTONS --- */
+        button {
+            padding: 8px 12px;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            font-weight: bold;
+            transition: 0.2s;
+        }
+        
+        .btn-add { background-color: #95a5a6; color: white; width: 100%; margin-bottom: 15px; }
+        .btn-add:hover { background-color: #7f8c8d; }
+
+        .btn-calc { background-color: var(--calc-color); color: white; width: 100%; font-size: 1.1rem; padding: 12px; }
+        .btn-calc:hover { background-color: #1f618d; }
+
+        .btn-green { background-color: var(--accent-color); color: white; }
+        
+        .btn-del { 
+            background-color: var(--danger-color); 
+            color: white; 
+            width: 30px; 
+            height: 30px;
+            padding: 0;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-shrink: 0; /* Prevents button from squishing */
+        }
+        .btn-del:hover { background-color: #c0392b; }
+
+        /* --- RESULT --- */
+        .result-box {
+            margin-top: 15px;
+            background: #ebf5fb;
+            border: 1px solid #aed6f1;
+            padding: 15px;
+            text-align: center;
+            border-radius: 6px;
+        }
+        .result-val { font-size: 2rem; font-weight: 800; color: var(--primary-color); }
+
+        /* --- NAVBAR --- */
+        .navbar {
+            background-color: var(--primary-color);
+            color: white;
+            padding: 0 20px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            height: 60px;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+            margin: -20px -20px 20px -20px;
+            border-radius: 8px 8px 0 0;
+        }
+
+        .navbar-brand {
+            font-size: 1.5rem;
+            font-weight: bold;
+            letter-spacing: 1px;
+        }
+
+        .navbar-nav {
+            display: flex;
+            gap: 20px;
+            list-style: none;
+            margin: 0;
+            padding: 0;
+        }
+
+        .navbar-nav a {
+            color: white;
+            text-decoration: none;
+            font-weight: 600;
+            padding: 8px 15px;
+            border-radius: 4px;
+            transition: 0.2s;
+            cursor: pointer;
+        }
+
+        .navbar-nav a:hover {
+            background-color: rgba(255,255,255,0.2);
+        }
+
+        .navbar-nav a.active {
+            background-color: var(--calc-color);
+        }
+
+        /* --- SECTION VISIBILITY --- */
+        .section {
+            display: none;
+        }
+
+        .section.active {
+            display: block;
+        }
+
+        @media (max-width: 600px) {
+            .navbar {
+                flex-direction: column;
+                height: auto;
+                padding: 10px 20px;
+                margin: -20px -20px 20px -20px;
+            }
+
+            .navbar-brand {
+                font-size: 1.2rem;
+                margin-bottom: 10px;
+            }
+
+            .navbar-nav {
+                gap: 10px;
+                flex-wrap: wrap;
+                justify-content: center;
+            }
+        }
+    </style>
+</head>
+<body>
+
+<!-- NAVBAR -->
+<nav class="navbar">
+    <div class="navbar-brand">GPA CALCULATOR</div>
+    <ul class="navbar-nav">
+        <li><a class="nav-link active" onclick="showSection('sgpa-section')">SGPA Calculator</a></li>
+        <li><a class="nav-link" onclick="showSection('cgpa-section')">CGPA Calculator</a></li>
+    </ul>
+</nav>
+
+<div class="container">
+
+    <!-- 1. SETTINGS SECTION (Only for SGPA) -->
+    <div id="settings-section" class="card settings section active">
+        <div class="settings-header">
+            <div>
+                <h2>Grading Scale</h2>
+                <p style="margin:0; font-size:0.85rem; color:#666;">Define marks ranges and grade points.</p>
+            </div>
+        </div>
+
+        <div class="config-grid">
+            <span>Label (e.g. A)</span>
+            <span>Min Marks</span>
+            <span>Max Marks</span>
+            <span>Grade Pt</span>
+            <span></span>
+        </div>
+
+        <div id="settings-container"></div>
+
+        <div style="margin-top: 15px; display:flex; gap:10px;">
+            <button class="btn-green" onclick="addNewGradeRow()">+ Add Grade Level</button>
+            <button onclick="resetDefaults()" style="background:#bdc3c7;">Reset Defaults</button>
+        </div>
+    </div>
+
+    <!-- SGPA SECTION -->
+    <div id="sgpa-section" class="section active">
+        <!-- SGPA (CIE + SEE Method) -->
+        <div class="card calculator calc-section">
+            <div style="display:flex; justify-content:space-between; align-items:center;">
+                <h2>SGPA (CIE+SEE)</h2>
+                <span style="font-size:0.8rem; color:#888;">Using CIE & SEE</span>
+            </div>
+            
+            <div id="sgpa-cie-see-inputs"></div>
+            
+            <button class="btn-add" onclick="addSgpaCIESEERow()">+ Add Subject</button>
+            <button class="btn-calc" onclick="calculateSGPACIESEE()">Calculate SGPA</button>
+
+            <div class="result-box">
+                SGPA: <span class="result-val" id="sgpa-cie-see-result">0.00</span>
+            </div>
+        </div>
+    </div>
+
+    <!-- CGPA SECTION -->
+    <div id="cgpa-section" class="section">
+        <!-- CGPA -->
+        <div class="card calculator calc-section">
+            <div style="display:flex; justify-content:space-between; align-items:center;">
+                <h2>CGPA</h2>
+                <span style="font-size:0.8rem; color:#888;">Cumulative</span>
+            </div>
+            
+            <div id="cgpa-inputs"></div>
+            
+            <button class="btn-add" onclick="addCgpaRow()">+ Add Semester</button>
+            <button class="btn-calc" onclick="calculateCGPA()">Calculate CGPA</button>
+
+            <div class="result-box">
+                CGPA: <span class="result-val" id="cgpa-result">0.00</span>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script>
+    /* =========================================
+       STATE MANAGEMENT
+       ========================================= */
+    const defaultScale = [
+        { label: 'O',  min: 90, max: 100, points: 10 },
+        { label: 'A+', min: 80, max: 89,  points: 9 },
+        { label: 'A',  min: 70, max: 79,  points: 8 },
+        { label: 'B+', min: 60, max: 69,  points: 7 },
+        { label: 'B',  min: 55, max: 59,  points: 6 },
+        { label: 'C',  min: 50, max: 54,  points: 5 },
+        { label: 'P',  min: 40, max: 49,  points: 4 },
+        { label: 'F',  min: 0,  max: 39,  points: 0 }
+    ];
+
+    let currentScale = JSON.parse(JSON.stringify(defaultScale));
+
+    /* =========================================
+       SETTINGS LOGIC (AUTO-ADJUST THRESHOLD)
+       ========================================= */
+    const settingsContainer = document.getElementById('settings-container');
+
+    function renderSettings() {
+        settingsContainer.innerHTML = '';
+        currentScale.forEach((grade, index) => {
+            const row = document.createElement('div');
+            row.className = 'config-row';
+            row.innerHTML = `
+                <input type="text" value="${grade.label}" oninput="updateScale(${index}, 'label', this.value)">
+                <input type="number" value="${grade.min}" oninput="updateScale(${index}, 'min', this.value)">
+                <input type="number" value="${grade.max}" oninput="updateScale(${index}, 'max', this.value)">
+                <input type="number" value="${grade.points}" step="0.1" oninput="updateScale(${index}, 'points', this.value)">
+                <button class="btn-del" onclick="removeGradeRow(${index})" title="Remove">✕</button>
+            `;
+            settingsContainer.appendChild(row);
+        });
+        autoAdjustThreshold();
+    }
+
+    function updateScale(index, field, value) {
+        if(field !== 'label') value = parseFloat(value) || 0;
+        currentScale[index][field] = value;
+        if(field === 'points') autoAdjustThreshold();
+    }
+
+    // Logic: Find the lowest Grade Point that is > 0. That is the "Pass" mark.
+    function autoAdjustThreshold() {
+        // Filter grades that are not Fail (assuming Fail is 0)
+        const nonZeroGrades = currentScale.filter(g => g.points > 0);
+        
+        if (nonZeroGrades.length > 0) {
+            // Get the minimum point from the remaining grades
+            const minPass = Math.min(...nonZeroGrades.map(g => g.points));
+            document.getElementById('passing-threshold').value = minPass;
+        } else {
+            document.getElementById('passing-threshold').value = 0;
+        }
+    }
+
+    function addNewGradeRow() {
+        currentScale.unshift({ label: 'New', min: 0, max: 0, points: 0 });
+        renderSettings();
+    }
+
+    function removeGradeRow(index) {
+        currentScale.splice(index, 1);
+        renderSettings();
+    }
+
+    function resetDefaults() {
+        if(confirm("Reset to default grading scale?")) {
+            currentScale = JSON.parse(JSON.stringify(defaultScale));
+            renderSettings();
+        }
+    }
+
+    /* =========================================
+       CALCULATOR UI (ADD/DELETE ROWS)
+       ========================================= */
+    
+    // Initialize
+    document.addEventListener('DOMContentLoaded', function() {
+        renderSettings();
+        for(let i=0; i<4; i++) {
+            addSgpaCIESEERow();
+            addCgpaRow();
+        }
+    });
+
+    // Section navigation
+    function showSection(sectionId) {
+        // Hide all sections
+        const sections = document.querySelectorAll('.section');
+        sections.forEach(section => section.classList.remove('active'));
+        
+        // Remove active from all nav links
+        const navLinks = document.querySelectorAll('.nav-link');
+        navLinks.forEach(link => link.classList.remove('active'));
+        
+        // Show selected section
+        document.getElementById(sectionId).classList.add('active');
+        
+        // Also show settings section only for SGPA
+        const settingsSection = document.getElementById('settings-section');
+        if (sectionId === 'sgpa-section') {
+            settingsSection.classList.add('active');
+        } else {
+            settingsSection.classList.remove('active');
+        }
+        
+        // Add active to clicked nav link
+        event.target.classList.add('active');
+    }
+
+    // SGPA (CIE + SEE) ROW LOGIC
+    function addSgpaCIESEERow() {
+        const container = document.getElementById('sgpa-cie-see-inputs');
+        const div = document.createElement('div');
+        div.className = 'input-row';
+        div.innerHTML = `
+            <label class="row-label">Subject</label>
+            <input type="number" class="sgpa-cie" placeholder="CIE (out of 50)" min="0" max="50">
+            <input type="number" class="sgpa-see" placeholder="SEE (out of 100)" min="0" max="100">
+            <input type="number" class="sgpa-credit" placeholder="Credit" min="0">
+            <button class="btn-del" onclick="deleteRow(this, 'sgpa-cie-see')">✕</button>
+        `;
+        container.appendChild(div);
+        renumberRows('sgpa-cie-see-inputs', 'Subject');
+    }
+
+    // CGPA ROW LOGIC
+    function addCgpaRow() {
+        const container = document.getElementById('cgpa-inputs');
+        const div = document.createElement('div');
+        div.className = 'input-row';
+        div.innerHTML = `
+            <label class="row-label">Semester</label>
+            <input type="number" class="cgpa-sgpa" placeholder="SGPA" min="0" max="10" step="0.01">
+            <button class="btn-del" onclick="deleteRow(this, 'cgpa')">✕</button>
+        `;
+        container.appendChild(div);
+        renumberRows('cgpa-inputs', 'Semester');
+    }
+
+    // GENERIC DELETE & RENUMBER
+    function deleteRow(btn, type) {
+        const row = btn.parentElement;
+        let containerId;
+        if (type === 'sgpa') {
+            containerId = 'sgpa-inputs';
+        } else if (type === 'sgpa-cie-see') {
+            containerId = 'sgpa-cie-see-inputs';
+        } else {
+            containerId = 'cgpa-inputs';
+        }
+        row.remove();
+        renumberRows(containerId, 'Subject');
+    }
+
+    function renumberRows(containerId, labelPrefix) {
+        const container = document.getElementById(containerId);
+        const rows = container.getElementsByClassName('input-row');
+        for (let i = 0; i < rows.length; i++) {
+            const label = rows[i].querySelector('.row-label');
+            label.textContent = `${labelPrefix} ${i + 1}`;
+        }
+    }
+
+    /* =========================================
+       CALCULATION LOGIC
+       ========================================= */
+
+    function getGradePoint(marks) {
+        // Sort descending by marks so we check 90-100 before 0-39
+        const sorted = [...currentScale].sort((a, b) => b.min - a.min);
+        for (let g of sorted) {
+            if (marks >= g.min && marks <= g.max) return g.points;
+        }
+        return 0;
+    }
+
+    function calculateSGPACIESEE() {
+        const container = document.getElementById('sgpa-cie-see-inputs');
+        const rows = container.getElementsByClassName('input-row');
+        
+        let num = 0, den = 0;
+
+        for (let row of rows) {
+            const cieVal = row.querySelector('.sgpa-cie').value;
+            const seeVal = row.querySelector('.sgpa-see').value;
+            const c = row.querySelector('.sgpa-credit').value;
+
+            if (cieVal !== "" && seeVal !== "" && c !== "") {
+                const cie = parseFloat(cieVal);
+                const see = parseFloat(seeVal);
+                const credit = parseFloat(c);
+                
+                // Convert SEE (out of 100) to out of 50
+                const seeConverted = (see / 100) * 50;
+                
+                // Total marks = CIE + Converted SEE
+                const totalMarks = cie + seeConverted;
+                const gp = getGradePoint(totalMarks);
+
+                num += (gp * credit);
+                den += credit;
+            }
+        }
+
+        const result = den === 0 ? 0 : num / den;
+        document.getElementById('sgpa-cie-see-result').innerText = result.toFixed(2);
+    }
+
+    function calculateCGPA() {
+        const container = document.getElementById('cgpa-inputs');
+        const rows = container.getElementsByClassName('input-row');
+        
+        let totalSGPA = 0;
+        let count = 0;
+
+        for (let row of rows) {
+            const sgpaValue = row.querySelector('.cgpa-sgpa').value;
+
+            if (sgpaValue !== "") {
+                const sgpa = parseFloat(sgpaValue);
+                totalSGPA += sgpa;
+                count++;
+            }
+        }
+
+        const result = count === 0 ? 0 : totalSGPA / count;
+        document.getElementById('cgpa-result').innerText = result.toFixed(2);
+    }
+</script>
+
+</body>
+</html>

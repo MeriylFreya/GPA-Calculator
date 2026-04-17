@@ -1,0 +1,351 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Frequently asked questions about GPA calculation, CGPA, SGPA, and academic grading systems.">
+    <meta name="keywords" content="FAQ, GPA questions, CGPA questions, SGPA questions, academic help">
+    <title>FAQ - Frequently Asked Questions About GPA</title>
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        :root {
+            --primary: #5e72e4;
+            --secondary: #11cdef;
+            --dark: #32325d;
+            --muted: #8898aa;
+            --light: #f7fafc;
+            --white: #ffffff;
+            --shadow-sm: 0 2px 10px rgba(0, 0, 0, 0.08);
+        }
+        body {
+            font-family: 'Segoe UI', 'Roboto', sans-serif;
+            line-height: 1.7;
+            color: var(--dark);
+            background-color: #fafbfc;
+        }
+        nav {
+            position: sticky;
+            top: 0;
+            background: var(--white);
+            box-shadow: var(--shadow-sm);
+            z-index: 1000;
+            height: 70px;
+            display: flex;
+            align-items: center;
+        }
+        .navbar-container {
+            max-width: 1200px;
+            width: 100%;
+            margin: 0 auto;
+            padding: 0 20px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        .logo {
+            font-size: 1.3rem;
+            font-weight: 800;
+            background: linear-gradient(135deg, var(--primary) 0%, var(--secondary) 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            text-decoration: none;
+        }
+        .nav-menu {
+            display: flex;
+            gap: 30px;
+            list-style: none;
+            flex: 1;
+            margin-left: 50px;
+        }
+        .nav-menu a {
+            text-decoration: none;
+            color: var(--dark);
+            font-weight: 600;
+            font-size: 0.9rem;
+        }
+        .nav-menu a:hover { color: var(--primary); }
+        .nav-cta {
+            background: var(--primary);
+            color: var(--white);
+            padding: 10px 20px;
+            border-radius: 8px;
+            font-weight: 600;
+            text-decoration: none;
+        }
+        .container {
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 60px 20px;
+        }
+        h1 {
+            font-size: 2.5rem;
+            margin-bottom: 30px;
+            text-align: center;
+        }
+        .faq-item {
+            background: var(--white);
+            margin-bottom: 15px;
+            border-radius: 8px;
+            box-shadow: var(--shadow-sm);
+            overflow: hidden;
+        }
+        .faq-question {
+            padding: 20px;
+            cursor: pointer;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            background: var(--light);
+            font-weight: 600;
+            color: var(--dark);
+            transition: all 0.3s ease;
+        }
+        .faq-question:hover {
+            background: #f0f3f8;
+        }
+        .faq-toggle {
+            width: 24px;
+            height: 24px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background: var(--primary);
+            color: var(--white);
+            border-radius: 50%;
+            font-size: 1.2rem;
+            transition: transform 0.3s ease;
+            flex-shrink: 0;
+        }
+        .faq-item.active .faq-toggle {
+            transform: rotate(45deg);
+        }
+        .faq-answer {
+            max-height: 0;
+            overflow: hidden;
+            padding: 0 20px;
+            color: var(--muted);
+            transition: all 0.3s ease;
+            line-height: 1.8;
+        }
+        .faq-item.active .faq-answer {
+            max-height: 800px;
+            padding: 20px;
+        }
+        footer {
+            background: var(--dark);
+            color: var(--white);
+            padding: 40px 20px;
+            text-align: center;
+            margin-top: 60px;
+        }
+        footer a { color: var(--secondary); text-decoration: none; }
+        @media (max-width: 768px) {
+            nav { height: auto; padding: 10px 20px; }
+            .navbar-container { flex-direction: column; gap: 15px; }
+            .nav-menu { flex-direction: column; gap: 10px; margin-left: 0; }
+            h1 { font-size: 1.8rem; }
+        }
+    </style>
+</head>
+<body>
+
+<nav>
+    <div class="navbar-container">
+        <a href="index.html" class="logo">GPA.io</a>
+        <ul class="nav-menu">
+            <li><a href="calculator.html">Calculator</a></li>
+            <li><a href="cgpa-vs-sgpa.html">Learn</a></li>
+            <li><a href="faq.html">FAQ</a></li>
+        </ul>
+        <a href="calculator.html" class="nav-cta">Open Calculator</a>
+    </div>
+</nav>
+
+<div class="container">
+    <h1>Frequently Asked Questions</h1>
+
+    <div class="faq-item active">
+        <div class="faq-question">
+            <span>What's the difference between CGPA and SGPA?</span>
+            <div class="faq-toggle">+</div>
+        </div>
+        <div class="faq-answer">
+            <p>SGPA (Semester GPA) is your grade point average for a single semester, while CGPA (Cumulative GPA) is your overall GPA across all semesters. CGPA is what most employers look at during recruitment.</p>
+        </div>
+    </div>
+
+    <div class="faq-item">
+        <div class="faq-question">
+            <span>Is this calculator accurate?</span>
+            <div class="faq-toggle">+</div>
+        </div>
+        <div class="faq-answer">
+            <p>Yes! Our calculator uses standard academic formulas. You can customize the grading scale to match your institution for 100% accuracy. All calculations happen in your browser.</p>
+        </div>
+    </div>
+
+    <div class="faq-item">
+        <div class="faq-question">
+            <span>Do you store my data?</span>
+            <div class="faq-toggle">+</div>
+        </div>
+        <div class="faq-answer">
+            <p>No. All calculations happen in your browser. We don't store, collect, or transmit any of your academic data. Your privacy is guaranteed.</p>
+        </div>
+    </div>
+
+    <div class="faq-item">
+        <div class="faq-question">
+            <span>Can I customize the grading scale?</span>
+            <div class="faq-toggle">+</div>
+        </div>
+        <div class="faq-answer">
+            <p>Absolutely! Our calculator includes a grading scale editor where you can set your own grade labels, mark ranges, and grade points to match your university's system exactly.</p>
+        </div>
+    </div>
+
+    <div class="faq-item">
+        <div class="faq-question">
+            <span>How is CGPA calculated if I have different semester weights?</span>
+            <div class="faq-toggle">+</div>
+        </div>
+        <div class="faq-answer">
+            <p>Some universities use simple average (all semesters count equally), while others use credit-weighted CGPA. Check with your university for their specific method. Our calculator uses simple average, which you can adjust manually if needed.</p>
+        </div>
+    </div>
+
+    <div class="faq-item">
+        <div class="faq-question">
+            <span>What if I failed a subject?</span>
+            <div class="faq-toggle">+</div>
+        </div>
+        <div class="faq-answer">
+            <p>Failed subjects with 0 points are included in CGPA and significantly impact it. Some universities allow retakes to improve the grade. Check your institution's retake policy.</p>
+        </div>
+    </div>
+
+    <div class="faq-item">
+        <div class="faq-question">
+            <span>Can I improve my CGPA after completing semesters?</span>
+            <div class="faq-toggle">+</div>
+        </div>
+        <div class="faq-answer">
+            <p>Yes! If you maintain or improve SGPA in upcoming semesters, you can gradually improve your CGPA. The earlier semesters have more impact, but consistent improvement always helps.</p>
+        </div>
+    </div>
+
+    <div class="faq-item">
+        <div class="faq-question">
+            <span>What's a good CGPA for job recruitment?</span>
+            <div class="faq-toggle">+</div>
+        </div>
+        <div class="faq-answer">
+            <p>Most companies accept 7.0+ CGPA (on 10.0 scale). Top companies may require 8.0+. However, skills, experience, and interview performance matter equally or more than CGPA.</p>
+        </div>
+    </div>
+
+    <div class="faq-item">
+        <div class="faq-question">
+            <span>How do I convert my GPA to percentage?</span>
+            <div class="faq-toggle">+</div>
+        </div>
+        <div class="faq-answer">
+            <p>The conversion depends on your scale:<br>• For 10.0 scale: Percentage = GPA × 10<br>• For 4.0 scale: Percentage = (GPA ÷ 4.0) × 100<br>Use our <a href="percentage-converter.html">percentage converter tool</a> for instant conversion.</p>
+        </div>
+    </div>
+
+    <div class="faq-item">
+        <div class="faq-question">
+            <span>How is SGPA affected by credit hours?</span>
+            <div class="faq-toggle">+</div>
+        </div>
+        <div class="faq-answer">
+            <p>SGPA is calculated as a weighted average where subjects with more credits have more impact. The formula is: SGPA = Σ(Grade Points × Credits) ÷ Σ(Credits). This means high grades in high-credit subjects are more beneficial.</p>
+        </div>
+    </div>
+
+    <div class="faq-item">
+        <div class="faq-question">
+            <span>Is CIE or SEE more important?</span>
+            <div class="faq-toggle">+</div>
+        </div>
+        <div class="faq-answer">
+            <p>Typically, SEE (Semester End Exam) is weighted 60% while CIE (Continuous Internal Evaluation) is 40%. However, this varies by institution. Check your university's course structure.</p>
+        </div>
+    </div>
+
+    <div class="faq-item">
+        <div class="faq-question">
+            <span>Can I calculate CGPA before all semesters are completed?</span>
+            <div class="faq-toggle">+</div>
+        </div>
+        <div class="faq-answer">
+            <p>Yes! You can calculate your current CGPA at any time. This helps you track progress and predict your final CGPA based on future semester performance.</p>
+        </div>
+    </div>
+
+    <div class="faq-item" id="tips">
+        <div class="faq-question">
+            <span>How can I improve my GPA?</span>
+            <div class="faq-toggle">+</div>
+        </div>
+        <div class="faq-answer">
+            <p><strong>Tips to improve GPA:</strong></p>
+            <ul style="margin: 15px 0; padding-left: 20px;">
+                <li>Focus on subjects with higher credits (more weight)</li>
+                <li>Don't neglect CIE - attend classes and complete assignments</li>
+                <li>Study hard for SEE - it's worth 60% of your marks</li>
+                <li>Form study groups with peers</li>
+                <li>Seek help from instructors early if struggling</li>
+                <li>Maintain consistency across semesters</li>
+            </ul>
+        </div>
+    </div>
+
+    <div class="faq-item">
+        <div class="faq-question">
+            <span>What if different semesters have different total credits?</span>
+            <div class="faq-toggle">+</div>
+        </div>
+        <div class="faq-answer">
+            <p>If simple average method is used, each semester counts equally regardless of credits. Some universities use a credit-weighted CGPA where semesters with more total credits have more impact. Verify your university's method.</p>
+        </div>
+    </div>
+
+    <div class="faq-item">
+        <div class="faq-question">
+            <span>How should I present my GPA to employers?</span>
+            <div class="faq-toggle">+</div>
+        </div>
+        <div class="faq-answer">
+            <p>Always mention the scale you're using (e.g., "CGPA: 8.5/10" or "GPA: 3.8/4.0"). If applying internationally, provide conversion if needed. Some employers also value SGPA from recent semesters.</p>
+        </div>
+    </div>
+
+    <div class="faq-item">
+        <div class="faq-question">
+            <span>Is there a maximum CGPA?</span>
+            <div class="faq-toggle">+</div>
+        </div>
+        <div class="faq-answer">
+            <p>Yes, it depends on your grading scale. For 10.0 scale, maximum is 10.0 (if all subjects are O grade). For 4.0 scale, maximum is 4.0. You need consistently high performance across all semesters to achieve maximum CGPA.</p>
+        </div>
+    </div>
+</div>
+
+<footer>
+    <p>&copy; 2024 GPA.io. All rights reserved. | <a href="privacy-policy.html">Privacy</a> | <a href="terms.html">Terms</a></p>
+</footer>
+
+<script>
+    document.querySelectorAll('.faq-question').forEach(question => {
+        question.addEventListener('click', () => {
+            const item = question.closest('.faq-item');
+            item.classList.toggle('active');
+        });
+    });
+</script>
+
+</body>
+</html>

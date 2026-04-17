@@ -1,0 +1,221 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="About GPA.io - Your trusted platform for accurate GPA and SGPA calculations for students worldwide.">
+    <title>About Us - GPA.io</title>
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        :root {
+            --primary: #5e72e4;
+            --secondary: #11cdef;
+            --dark: #32325d;
+            --muted: #8898aa;
+            --light: #f7fafc;
+            --white: #ffffff;
+            --shadow-sm: 0 2px 10px rgba(0, 0, 0, 0.08);
+        }
+        body {
+            font-family: 'Segoe UI', 'Roboto', sans-serif;
+            line-height: 1.7;
+            color: var(--dark);
+            background-color: #fafbfc;
+        }
+        nav {
+            position: sticky;
+            top: 0;
+            background: var(--white);
+            box-shadow: var(--shadow-sm);
+            z-index: 1000;
+            height: 70px;
+            display: flex;
+            align-items: center;
+        }
+        .navbar-container {
+            max-width: 1200px;
+            width: 100%;
+            margin: 0 auto;
+            padding: 0 20px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        .logo {
+            font-size: 1.3rem;
+            font-weight: 800;
+            background: linear-gradient(135deg, var(--primary) 0%, var(--secondary) 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            text-decoration: none;
+        }
+        .nav-menu {
+            display: flex;
+            gap: 30px;
+            list-style: none;
+            flex: 1;
+            margin-left: 50px;
+        }
+        .nav-menu a {
+            text-decoration: none;
+            color: var(--dark);
+            font-weight: 600;
+            font-size: 0.9rem;
+        }
+        .nav-cta {
+            background: var(--primary);
+            color: var(--white);
+            padding: 10px 20px;
+            border-radius: 8px;
+            font-weight: 600;
+            text-decoration: none;
+        }
+        .container {
+            max-width: 900px;
+            margin: 0 auto;
+            padding: 60px 20px;
+        }
+        h1 {
+            font-size: 2.5rem;
+            margin-bottom: 30px;
+        }
+        h2 {
+            font-size: 1.8rem;
+            margin-top: 50px;
+            margin-bottom: 25px;
+            border-bottom: 3px solid var(--secondary);
+            padding-bottom: 10px;
+        }
+        h3 {
+            font-size: 1.3rem;
+            color: var(--dark);
+            margin-top: 30px;
+            margin-bottom: 15px;
+        }
+        p {
+            margin-bottom: 15px;
+            color: #555;
+        }
+        .card {
+            background: var(--white);
+            padding: 30px;
+            border-radius: 8px;
+            box-shadow: var(--shadow-sm);
+            margin: 25px 0;
+            border-left: 4px solid var(--primary);
+        }
+        ul {
+            margin: 15px 0;
+            padding-left: 25px;
+        }
+        li {
+            margin-bottom: 10px;
+        }
+        footer {
+            background: var(--dark);
+            color: var(--white);
+            padding: 40px 20px;
+            text-align: center;
+            margin-top: 60px;
+        }
+        footer a { color: var(--secondary); text-decoration: none; }
+        @media (max-width: 768px) {
+            .navbar-container { flex-direction: column; gap: 15px; }
+            .nav-menu { flex-direction: column; gap: 10px; margin-left: 0; }
+            h1 { font-size: 1.8rem; }
+        }
+    </style>
+</head>
+<body>
+
+<nav>
+    <div class="navbar-container">
+        <a href="index.html" class="logo">GPA.io</a>
+        <ul class="nav-menu">
+            <li><a href="calculator.html">Calculator</a></li>
+            <li><a href="cgpa-vs-sgpa.html">Learn</a></li>
+            <li><a href="faq.html">FAQ</a></li>
+        </ul>
+        <a href="calculator.html" class="nav-cta">Open Calculator</a>
+    </div>
+</nav>
+
+<div class="container">
+    <h1>About GPA.io</h1>
+
+    <h2>Our Mission</h2>
+    <p>We're committed to helping students worldwide understand and calculate their GPAs accurately and easily. Our mission is to provide free, reliable academic calculators that empower students to track their academic progress and make informed decisions about their education.</p>
+
+    <h2>What We Do</h2>
+    <p>GPA.io provides free, online tools for students to:</p>
+    <ul>
+        <li>Calculate CGPA (Cumulative Grade Point Average) across all semesters</li>
+        <li>Calculate SGPA (Semester Grade Point Average) with CIE and SEE marks</li>
+        <li>Convert marks to percentages and different GPA scales</li>
+        <li>Learn about grading systems used worldwide</li>
+        <li>Understand academic standards and best practices</li>
+    </ul>
+
+    <h2>Why We're Different</h2>
+    <div class="card">
+        <h3>100% Free</h3>
+        <p>No ads, no signups, no hidden charges. Our tools are completely free forever.</p>
+    </div>
+
+    <div class="card">
+        <h3>Privacy First</h3>
+        <p>All calculations happen in your browser. We never store, collect, or share your academic data.</p>
+    </div>
+
+    <div class="card">
+        <h3>Highly Accurate</h3>
+        <p>Built by educators with deep knowledge of academic standards and grading systems worldwide.</p>
+    </div>
+
+    <div class="card">
+        <h3>Customizable</h3>
+        <p>Set up your own grading scale to match your institution's specific requirements.</p>
+    </div>
+
+    <div class="card">
+        <h3>Educational</h3>
+        <p>Learn how GPA is calculated, understand different grading systems, and read helpful guides.</p>
+    </div>
+
+    <h2>Our Commitment</h2>
+    <ul>
+        <li><strong>Accuracy:</strong> We use verified academic formulas and test extensively</li>
+        <li><strong>Simplicity:</strong> Easy-to-use interface that works on all devices</li>
+        <li><strong>Transparency:</strong> Clear explanations of how calculations work</li>
+        <li><strong>Accessibility:</strong> Free access for all students worldwide</li>
+        <li><strong>Privacy:</strong> Your data is yours alone - we never track or store it</li>
+    </ul>
+
+    <h2>Who We're For</h2>
+    <p>GPA.io is built for:</p>
+    <ul>
+        <li>High school students tracking their academic progress</li>
+        <li>College and university students calculating GPAs</li>
+        <li>Students preparing for job interviews and applications</li>
+        <li>International students converting between grading scales</li>
+        <li>Anyone seeking to understand academic grading systems</li>
+    </ul>
+
+    <h2>Get In Touch</h2>
+    <p>Have questions or suggestions? We'd love to hear from you! <a href="contact.html">Contact us here</a>.</p>
+
+    <h2>Legal</h2>
+    <ul>
+        <li><a href="privacy-policy.html">Privacy Policy</a> - How we handle your data</li>
+        <li><a href="terms.html">Terms of Service</a> - Our usage terms</li>
+        <li><a href="disclaimer.html">Disclaimer</a> - Important information about our service</li>
+    </ul>
+</div>
+
+<footer>
+    <p>&copy; 2024 GPA.io. All rights reserved. | <a href="privacy-policy.html">Privacy</a> | <a href="terms.html">Terms</a></p>
+</footer>
+
+</body>
+</html>
